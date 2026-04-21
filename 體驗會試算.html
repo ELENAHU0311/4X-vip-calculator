@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4重肌因職活保養 VIP 體驗會</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', '微軟正黑體', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f4f8 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff9999 0%, #ffcccc 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 4px solid #ff6666;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .header p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .content {
+            padding: 30px 20px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #ff9999 0%, #ff7777 100%);
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 5px solid #ff5555;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th {
+            background: #f0f0f0;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        
+        tr:hover {
+            background: #fafafa;
+        }
+        
+        input[type="number"] {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #ff9999;
+            box-shadow: 0 0 5px rgba(255, 153, 153, 0.3);
+        }
+        
+        .amount {
+            color: #ff6666;
+            font-weight: bold;
+            text-align: right;
+        }
+        
+        .summary-box {
+            background: #fff5f5;
+            border: 2px solid #ffcccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 16px;
+            border-bottom: 1px solid #ffe6e6;
+        }
+        
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .summary-value {
+            color: #ff6666;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .total-row {
+            background: linear-gradient(135deg, #ff9999 0%, #ffcccc 100%);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        
+        .total-row .summary-label {
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .total-row .summary-value {
+            font-size: 24px;
+            color: #d63031;
+        }
+        
+        .gift-check {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        .gift-check.yes {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .gift-check.no {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .input-group input {
+            flex: 1;
+        }
+        
+        .input-group span {
+            color: #666;
+            font-size: 12px;
+            min-width: 50px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input[type="radio"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .checkbox-item label {
+            cursor: pointer;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .quantity-row {
+            background: #fff5f5;
+            border: 2px solid #ffcccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .quantity-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .quantity-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-field label {
+            font-weight: bold;
+            color: #333;
+            min-width: 80px;
+        }
+        
+        .quantity-field input {
+            flex: 1;
+            max-width: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .table-responsive {
+                font-size: 12px;
+            }
+            
+            input[type="number"] {
+                width: 60px;
+                padding: 6px;
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 8px;
+                font-size: 12px;
+            }
+            
+            .checkbox-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .quantity-input {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>4重肌因職活保養 VIP 體驗會</h1>
+            <p>線上銷售計算單</p>
+        </div>
+        
+        <div class="content">
+            <!-- ===== 套組銷售區 ===== -->
+            <div class="section">
+                <div class="section-title">📦 套組銷售</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>銷售套型</th>
+                                <th>單價</th>
+                                <th style="text-align: center;">數量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>套組一</td>
+                                <td class="amount">20,000</td>
+                                <td><input type="number" id="d6" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>套組一(折報名費)</td>
+                                <td class="amount">17,000</td>
+                                <td><input type="number" id="d7" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>套組二</td>
+                                <td class="amount">38,000</td>
+                                <td><input type="number" id="d8" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>套組二(折報名費)</td>
+                                <td class="amount">35,000</td>
+                                <td><input type="number" id="d9" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr style="background: #f5f5f5; font-weight: bold;">
+                                <td colspan="2">小計</td>
+                                <td class="amount" id="d10">0</td>
+                            </tr>
+                            <tr style="background: #fff5f5; font-weight: bold;">
+                                <td colspan="2">套組金額</td>
+                                <td class="amount" id="d11">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- ===== 商品加購區 ===== -->
+            <div class="section">
+                <div class="section-title">🛍️ 商品加購</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>商品名稱</th>
+                                <th>定價</th>
+                                <th style="text-align: center;">65折加購</th>
+                                <th style="text-align: center;">折報名費</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>水潤賦活瓶</td>
+                                <td class="amount">2,380</td>
+                                <td><input type="number" id="d14" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e14" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>極效修復凝膠</td>
+                                <td class="amount">3,600</td>
+                                <td><input type="number" id="d15" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e15" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>全面修復霜</td>
+                                <td class="amount">3,600</td>
+                                <td><input type="number" id="d16" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e16" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>青春緊緻安瓶</td>
+                                <td class="amount">2,380</td>
+                                <td><input type="number" id="d17" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e17" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>撫紋修護精華</td>
+                                <td class="amount">5,200</td>
+                                <td><input type="number" id="d18" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e18" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>夜酵煥膚霜</td>
+                                <td class="amount">3,600</td>
+                                <td><input type="number" id="d19" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e19" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>4重豐潤面膜</td>
+                                <td class="amount">2,600</td>
+                                <td><input type="number" id="d20" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e20" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>4重保濕乳霜</td>
+                                <td class="amount">3,300</td>
+                                <td><input type="number" id="d21" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e21" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>4重特潤霜</td>
+                                <td class="amount">3,300</td>
+                                <td><input type="number" id="d22" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e22" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>4重導入精華</td>
+                                <td class="amount">3,900</td>
+                                <td><input type="number" id="d23" value="0" min="0" onchange="calculate()"></td>
+                                <td><input type="number" id="e23" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr style="background: #f5f5f5; font-weight: bold;">
+                                <td colspan="2">小計</td>
+                                <td class="amount" id="d24">0</td>
+                                <td class="amount" id="e24">0</td>
+                            </tr>
+                            <tr style="background: #fff5f5; font-weight: bold;">
+                                <td colspan="2">加購金額</td>
+                                <td class="amount" id="d25">-</td>
+                                <td class="amount" id="e25">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- ===== 銷售金額小計 ===== -->
+            <div class="summary-box">
+                <div class="summary-row">
+                    <span class="summary-label">銷售小計金額</span>
+                    <span class="summary-value" id="c27">-</span>
+                </div>
+            </div>
+            
+            <!-- ===== 贈送安瓶 ===== -->
+            <div class="quantity-row">
+                <div style="font-weight: bold; font-size: 16px; color: #333; margin-bottom: 10px;">✨ 贈送安瓶</div>
+                <div class="quantity-input">
+                    <div class="quantity-field">
+                        <label for="qty-water">水潤安瓶：</label>
+                        <input type="number" id="qty-water" value="0" min="0" onchange="calculate()" placeholder="數量">
+                    </div>
+                    <div class="quantity-field">
+                        <label for="qty-youth">青春安瓶：</label>
+                        <input type="number" id="qty-youth" value="0" min="0" onchange="calculate()" placeholder="數量">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== 滿額禮贈 ===== -->
+            <div class="section">
+                <div class="section-title">🎁 滿額禮贈</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="2">贈送項目</th>
+                                <th style="text-align: center;">符合條件</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2">滿30,000元贈眼枕</td>
+                                <td><span class="gift-check" id="c29">-</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">滿45,000元贈旅行組</td>
+                                <td><span class="gift-check" id="c30">-</span></td>
+                            </tr>
+                            <tr id="travel-select-row" style="display: none;">
+                                <td colspan="3" style="padding: 15px;">
+                                    <div style="font-weight: bold; margin-bottom: 10px;">請選擇旅行組款式：</div>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="radio" id="travel-ultimate" name="travel-type" value="極致" onchange="calculate()">
+                                            <label for="travel-ultimate">極致</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="radio" id="travel-soft" name="travel-type" value="柔漾" onchange="calculate()">
+                                            <label for="travel-soft">柔漾</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="radio" id="travel-protection" name="travel-type" value="護色" onchange="calculate()">
+                                            <label for="travel-protection">護色</label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- ===== Love Mom活動 ===== -->
+            <div class="section">
+                <div class="section-title">💝 Love Mom 活動</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>品項</th>
+                                <th style="text-align: center;">單位</th>
+                                <th style="text-align: center;">數量</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>20萬儲值卡</td>
+                                <td>張</td>
+                                <td><input type="number" id="c35" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>2件75折</td>
+                                <td>元/原價</td>
+                                <td><input type="number" id="c36" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>3件(含)以上7折</td>
+                                <td>元/原價</td>
+                                <td><input type="number" id="c37" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>LPG$5.2萬</td>
+                                <td>組</td>
+                                <td><input type="number" id="c38" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>其他</td>
+                                <td>元/折價後</td>
+                                <td><input type="number" id="c39" value="0" min="0" onchange="calculate()"></td>
+                            </tr>
+                            <tr style="background: #fff5f5; font-weight: bold;">
+                                <td colspan="2">Love Mom 活動總額</td>
+                                <td class="amount" id="c40">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- ===== 最終合計 ===== -->
+            <div class="summary-box">
+                <div class="total-row">
+                    <div class="summary-row" style="border: none; padding: 0;">
+                        <span class="summary-label">💰 合計金額</span>
+                        <span class="summary-value" id="c42">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function calculate() {
+            // 套組部分
+            const c6 = 20000, c7 = 17000, c8 = 38000, c9 = 35000;
+            const d6 = +document.getElementById('d6').value;
+            const d7 = +document.getElementById('d7').value;
+            const d8 = +document.getElementById('d8').value;
+            const d9 = +document.getElementById('d9').value;
+            
+            // D10 = D6+D7+D8+D9 (數量和)
+            const d10 = d6 + d7 + d8 + d9;
+            document.getElementById('d10').textContent = d10;
+            
+            // D11 = C6*D6+C7*D7+C8*D8+C9*D9
+            const d11 = c6*d6 + c7*d7 + c8*d8 + c9*d9;
+            document.getElementById('d11').textContent = d11 > 0 ? d11.toLocaleString() : '-';
+            
+            // 商品加購部分
+            const prices = [2380, 3600, 3600, 2380, 5200, 3600, 2600, 3300, 3300, 3900];
+            let d24 = 0, e24 = 0;
+            
+            for (let i = 0; i < 10; i++) {
+                const dVal = +document.getElementById(`d${14+i}`).value;
+                const eVal = +document.getElementById(`e${14+i}`).value;
+                d24 += prices[i] * dVal;
+                e24 += prices[i] * eVal;
+            }
+            
+            document.getElementById('d24').textContent = d24.toLocaleString();
+            document.getElementById('e24').textContent = e24.toLocaleString();
+            
+            // D25 = (SUM(C14*D14:C23*D23)) * 0.65
+            const d25 = Math.round(d24 * 0.65);
+            document.getElementById('d25').textContent = d25 > 0 ? d25.toLocaleString() : '-';
+            
+            // E25 = SUM(C14*E14:C23*E23) - 3000
+            const e25 = e24 - 3000;
+            document.getElementById('e25').textContent = e25 > 0 ? e25.toLocaleString() : '-';
+            
+            // C27 = D11+D25+IF(E25>-3000, E25, 0)
+            const e25_display = e25 > -3000 ? e25 : 0;
+            const c27 = d11 + d25 + e25_display;
+            document.getElementById('c27').textContent = c27.toLocaleString();
+            
+            // C29 = IF(C27>=30000, "V", "-")
+            const c29 = c27 >= 30000 ? "V" : "-";
+            const elem29 = document.getElementById('c29');
+            elem29.textContent = c29;
+            elem29.className = c29 === "V" ? "gift-check yes" : "gift-check no";
+            
+            // C30 = IF(C27>=45000, "V", "-")
+            const c30 = c27 >= 45000 ? "V" : "-";
+            const elem30 = document.getElementById('c30');
+            elem30.textContent = c30;
+            elem30.className = c30 === "V" ? "gift-check yes" : "gift-check no";
+            
+            // 顯示/隱藏旅行組選擇
+            const travelRow = document.getElementById('travel-select-row');
+            if (c30 === "V") {
+                travelRow.style.display = '';
+            } else {
+                travelRow.style.display = 'none';
+                // 取消選擇
+                document.querySelectorAll('input[name="travel-type"]').forEach(el => el.checked = false);
+            }
+            
+            // C40 = C35*200000+C36*0.75+C37*0.7+C38*52000+C39
+            const c35 = +document.getElementById('c35').value;
+            const c36 = +document.getElementById('c36').value;
+            const c37 = +document.getElementById('c37').value;
+            const c38 = +document.getElementById('c38').value;
+            const c39 = +document.getElementById('c39').value;
+            
+            const c40 = c35*200000 + c36*0.75 + c37*0.7 + c38*52000 + c39;
+            document.getElementById('c40').textContent = c40 > 0 ? c40.toLocaleString() : '-';
+            
+            // C42 = C27+C40
+            const c42 = c27 + c40;
+            document.getElementById('c42').textContent = c42.toLocaleString();
+        }
+        
+        // 頁面載入時計算一次
+        window.onload = function() {
+            calculate();
+        };
+    </script>
+</body>
+</html>
